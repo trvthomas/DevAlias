@@ -28,8 +28,14 @@
     <meta charset="utf-8">
 </head>
 
-<body>
-    <section class="hero is-primary is-fullheight">
+<body onload="createStars()">
+    <section class="hero is-black is-fullheight is-relative">
+        <div class="heroImage">
+            <img src="assets/background.png" alt="">
+        </div>
+        <div class="heroOverlay"></div>
+        <div class="starsContainer" id="starsContainer"></div>
+
         <div class="container has-text-centered">
             <div id="containerStart">
                 <figure class="image is-1by1 mx-auto is-clickable elementHover" style="width: 30%"
@@ -53,7 +59,7 @@
                     </div>
 
                     <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('python')">
-                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                        <div class="box is-shadowless optionsBox inverted is-relative pb-4 elementHover">
                             <figure class="image is-64x64 cardFloatingIconImg">
                                 <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-python"></i></span>
                                 </div>
@@ -72,7 +78,7 @@
                     </div>
 
                     <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('java')">
-                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                        <div class="box is-shadowless optionsBox inverted is-relative pb-4 elementHover">
                             <figure class="image is-64x64 cardFloatingIconImg">
                                 <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-java"></i></span>
                                 </div>
@@ -92,7 +98,7 @@
                     </div>
 
                     <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('none')">
-                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                        <div class="box is-shadowless optionsBox special is-relative pb-4 elementHover">
                             <figure class="image is-64x64 cardFloatingIconImg">
                                 <div class="categoryColorImage"><span><i class="fa-solid fa-fw fa-rocket"></i></span>
                                 </div>
@@ -107,7 +113,7 @@
                 <h2 class="title">What's your skill level?</h2>
                 <div class="columns is-multiline">
                     <div class="column is-one-third is-clickable" onclick="selectSkillLevel('beginner')">
-                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                        <div class="box is-shadowless optionsBox special is-relative pb-4 elementHover">
                             <figure class="image is-64x64 cardFloatingIconImg">
                                 <div class="categoryColorImage"><span><i
                                             class="fa-solid fa-fw fa-user-graduate"></i></span>
@@ -118,7 +124,7 @@
                     </div>
 
                     <div class="column is-one-third is-clickable" onclick="selectSkillLevel('intermediate')">
-                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                        <div class="box is-shadowless optionsBox inverted is-relative pb-4 elementHover">
                             <figure class="image is-64x64 cardFloatingIconImg">
                                 <div class="categoryColorImage"><span><i
                                             class="fa-solid fa-fw fa-user-ninja"></i></span>
@@ -143,10 +149,10 @@
             <div class="is-hidden" id="containerQuestion3">
                 <h2 class="title">Let's personalize your experience! Tell us your name</h2>
 
-                <div class="field has-addons">
+                <div class="field has-addons mb-0">
                     <div class="control has-icons-left is-expanded">
                         <input class="input is-large" type="text" placeholder="e.g. Jhon, Jane" maxlength="30"
-                            id="inputName">
+                            id="inputName" onkeyup="onup()">
                         <span class="icon is-left"><i class="fa-solid fa-signature"></i></span>
                     </div>
                     <div class="control">
@@ -154,6 +160,7 @@
                                 class="fa-solid fa-fw fa-chevron-right"></i></button>
                     </div>
                 </div>
+                <p class="is-size-7 has-text-left">Optional, click <b>Generate</b> to continue without name</p>
             </div>
 
             <div class="is-hidden" id="containerLoader">
@@ -166,17 +173,21 @@
 
             <div class="is-hidden" id="containerResults">
                 <div class="columns">
-                    <div class="column" style="border-right: 2px solid var(--bulma-primary-20)">
-                        <h3 class="subtitle" id="resultsUserName"></h3>
-                        <h2 class="title is-1" style="font-family: 'Archivo Black', sans-serif;" id="resultsDevAlias">
-                        </h2>
+                    <div class="column is-relative" style="border-right: 2px solid var(--bulma-primary)">
+                        <div class="centeredResults">
+                            <h3 class="subtitle is-3" id="resultsUserName"></h3>
+                            <h2 class="title is-1 animate__animated animate__zoomInDown animate__delay-1s"
+                                style="font-family: 'Archivo Black', sans-serif;" id="resultsDevAlias">
+                            </h2>
+                        </div>
                     </div>
 
                     <div class="column is-one-third">
-                        <h4 class="title" id="resultsInvitingMessage">Inviting message...</h4>
+                        <h4 class="title mb-1" id="resultsInvitingMessage">Inviting message...</h4>
 
-                        <figure class="image is-1by1 mx-auto" style="width: 80%;">
-                            <img src="assets/discord-qr.png" alt="CSM Computer Science Club Discord QR Code" style="border-radius: .25rem;">
+                        <figure class="image is-1by1 mx-auto" style="width: 60%;">
+                            <img src="assets/discord-qr.png" alt="CSM Computer Science Club Discord QR Code"
+                                style="border-radius: 1rem;">
                         </figure>
                     </div>
                 </div>
@@ -187,6 +198,28 @@
     <script>
         const answers = { favoriteLanguage: "", skillLevel: "", userName: "" };
         var resultDevName = "";
+
+        function createStars() {
+            for (var x = 0; x <= 150; x++) {
+                const xPosition = Math.floor(Math.random() * 101);
+                const yPosition = Math.floor(Math.random() * 101);
+                const starType = Math.floor(Math.random() * 3) + 1;
+
+                const createStar = document.createElement("DIV");
+                var attributeStar = document.createAttribute("class");
+                attributeStar.value = "star" + starType;
+                var attributeStar2 = document.createAttribute("style");
+                attributeStar2.value = "top: " + yPosition + "vh; left: " + xPosition + "vw;";
+                var appendLoader = document.getElementById('starsContainer').appendChild(createStar);
+                appendLoader.setAttributeNode(attributeStar); appendLoader.setAttributeNode(attributeStar2);
+            }
+        }
+
+        function onup() {
+            if (event.keyCode === 13) {
+                generateDevAlias();
+            }
+        }
 
         function startGame() {
             document.getElementById('containerStart').classList.add("animate__animated", "animate__fadeOutLeft");
@@ -241,7 +274,7 @@
             calculateResults();
 
             if (answers.userName != "") {
-                document.getElementById('resultsUserName').innerHTML = answers.userName + ", your DevAlias is:";
+                document.getElementById('resultsUserName').innerHTML = answers.userName + ", the";
             } else {
                 document.getElementById('resultsUserName').innerHTML = "Your DevAlias is:";
             }
@@ -263,7 +296,7 @@
             const randomFavLanguage = Math.floor(Math.random() * faveLanguageNouns[answers.favoriteLanguage].length);
             const randomSkillLevel = Math.floor(Math.random() * skillLevelAdjectives[answers.skillLevel].length);
 
-            resultDevName = "<span>" + faveLanguageNouns[answers.favoriteLanguage][randomFavLanguage] + "</span> <span>" + skillLevelAdjectives[answers.skillLevel][randomSkillLevel] + "</span>";
+            resultDevName = "<span>" + skillLevelAdjectives[answers.skillLevel][randomSkillLevel] + "</span> <span>" + faveLanguageNouns[answers.favoriteLanguage][randomFavLanguage] + "</span>";
         }
     </script>
 </body>
