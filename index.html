@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+
+<head>
+    <title>DevAlias for CS Club</title>
+
+    <meta name="description"
+        content="Discover your unique coder identity with DevAlias! Generate fun and personalized code names based on your favorite programming language and skill level.">
+    <link rel="stylesheet" href="include/bulma-styling.css">
+    <link rel="stylesheet" href="include/styling.css">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <link href="https://trvsolutions-customer-resources.s3.amazonaws.com/fontawesome-icons/css/fontawesome.min.css"
+        rel="stylesheet">
+    <link href="https://trvsolutions-customer-resources.s3.amazonaws.com/fontawesome-icons/css/brands.min.css"
+        rel="stylesheet">
+    <link href="https://trvsolutions-customer-resources.s3.amazonaws.com/fontawesome-icons/css/regular.min.css"
+        rel="stylesheet">
+    <link href="https://trvsolutions-customer-resources.s3.amazonaws.com/fontawesome-icons/css/solid.min.css"
+        rel="stylesheet">
+    <link href="https://trvsolutions-customer-resources.s3.amazonaws.com/fontawesome-icons/css/v5-font-face.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <section class="hero is-primary is-fullheight">
+        <div class="container has-text-centered">
+            <div id="containerStart">
+                <figure class="image is-1by1 mx-auto is-clickable elementHover" style="width: 30%"
+                    onclick="startGame()">
+                    <img src="assets/logo.png" alt="Logo CSM Computer Science Club, click here to start!">
+                </figure>
+                <p class="animate__animated animate__pulse animate__slow animate__infinite">Press the logo to start!</p>
+            </div>
+
+            <div class="is-hidden" id="containerQuestion1">
+                <h2 class="title">What's your favorite programming language?</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('html')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-html5"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">HTML</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('python')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-python"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">Python</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('js')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-js"></i></span></div>
+                            </figure>
+                            <h5 class="title is-4">JavaScript</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('java')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-brands fa-fw fa-java"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">Java</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('other')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-solid fa-fw fa-code"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">Other</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectFaveLanguage('none')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i class="fa-solid fa-fw fa-rocket"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">None</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="is-hidden" id="containerQuestion2">
+                <h2 class="title">What's your skill level?</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-third is-clickable" onclick="selectSkillLevel('beginner')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i
+                                            class="fa-solid fa-fw fa-user-graduate"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">Beginner</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectSkillLevel('intermediate')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i
+                                            class="fa-solid fa-fw fa-user-ninja"></i></span>
+                                </div>
+                            </figure>
+                            <h5 class="title is-4">Intermediate</h5>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-third is-clickable" onclick="selectSkillLevel('advanced')">
+                        <div class="box is-shadowless optionsBox is-relative pb-4 elementHover">
+                            <figure class="image is-64x64 cardFloatingIconImg">
+                                <div class="categoryColorImage"><span><i
+                                            class="fa-solid fa-fw fa-user-astronaut"></i></span></div>
+                            </figure>
+                            <h5 class="title is-4">Advanced</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="is-hidden" id="containerQuestion3">
+                <h2 class="title">Let's personalize your experience! Tell us your name</h2>
+
+                <div class="field has-addons">
+                    <div class="control has-icons-left is-expanded">
+                        <input class="input is-large" type="text" placeholder="e.g. Jhon, Jane" maxlength="30"
+                            id="inputName">
+                        <span class="icon is-left"><i class="fa-solid fa-signature"></i></span>
+                    </div>
+                    <div class="control">
+                        <button class="button is-large is-primary is-light" onclick="generateDevAlias()">Generate <i
+                                class="fa-solid fa-fw fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="is-hidden" id="containerLoader">
+                <figure class="image is-1by1 mx-auto" style="width: 30%">
+                    <img class="animate__animated animate__flash animate__slower animate__infinite"
+                        src="assets/logo.png" alt="Logo CSM Computer Science Club">
+                </figure>
+                <p>Generating your DevAlias...</p>
+            </div>
+
+            <div class="is-hidden" id="containerResults">
+                <div class="columns">
+                    <div class="column" style="border-right: 2px solid var(--bulma-primary-20)">
+                        <h3 class="subtitle" id="resultsUserName"></h3>
+                        <h2 class="title is-1" style="font-family: 'Archivo Black', sans-serif;" id="resultsDevAlias">
+                        </h2>
+                    </div>
+
+                    <div class="column is-one-third">
+                        <h4 class="title" id="resultsInvitingMessage">Inviting message...</h4>
+
+                        <figure class="image is-1by1 mx-auto" style="width: 80%;">
+                            <img src="assets/discord-qr.png" alt="CSM Computer Science Club Discord QR Code" style="border-radius: .25rem;">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script type="text/javascript" src="include/names.js"></script>
+    <script>
+        const answers = { favoriteLanguage: "", skillLevel: "", userName: "" };
+        var resultDevName = "";
+
+        function startGame() {
+            document.getElementById('containerStart').classList.add("animate__animated", "animate__fadeOutLeft");
+            setTimeout(function () {
+                document.getElementById('containerStart').classList.add("is-hidden");
+                document.getElementById('containerQuestion1').classList.remove("is-hidden");
+                document.getElementById('containerQuestion1').classList.add("animate__animated", "animate__fadeInRight");
+            }, 500);
+        }
+
+        function selectFaveLanguage(selectedLang) {
+            answers.favoriteLanguage = selectedLang;
+
+            document.getElementById('containerQuestion1').classList.add("animate__animated", "animate__fadeOutLeft");
+            setTimeout(function () {
+                document.getElementById('containerQuestion1').classList.add("is-hidden");
+                var skipToQuestion = 2;
+                if (selectedLang == "none") {
+                    skipToQuestion = 3;
+                    answers.skillLevel = "beginner";
+                }
+                document.getElementById('containerQuestion' + skipToQuestion).classList.remove("is-hidden");
+                document.getElementById('containerQuestion' + skipToQuestion).classList.add("animate__animated", "animate__fadeInRight");
+            }, 500);
+        }
+
+        function selectSkillLevel(selectedSkill) {
+            answers.skillLevel = selectedSkill;
+
+            document.getElementById('containerQuestion2').classList.add("animate__animated", "animate__fadeOutLeft");
+            setTimeout(function () {
+                document.getElementById('containerQuestion2').classList.add("is-hidden");
+                document.getElementById('containerQuestion3').classList.remove("is-hidden");
+                document.getElementById('containerQuestion3').classList.add("animate__animated", "animate__fadeInRight");
+            }, 500);
+        }
+
+        function generateDevAlias() {
+            const name = document.getElementById('inputName').value;
+            answers.userName = name.charAt(0).toUpperCase() + name.slice(1);
+
+            document.getElementById('containerQuestion3').classList.add("animate__animated", "animate__fadeOutLeft");
+            setTimeout(function () {
+                document.getElementById('containerQuestion3').classList.add("is-hidden");
+                document.getElementById('containerLoader').classList.remove("is-hidden");
+                document.getElementById('containerLoader').classList.add("animate__animated", "animate__fadeInRight");
+                displayResults();
+            }, 500);
+        }
+
+        function displayResults() {
+            calculateResults();
+
+            if (answers.userName != "") {
+                document.getElementById('resultsUserName').innerHTML = answers.userName + ", your DevAlias is:";
+            } else {
+                document.getElementById('resultsUserName').innerHTML = "Your DevAlias is:";
+            }
+            document.getElementById('resultsDevAlias').innerHTML = resultDevName;
+
+            setTimeout(function () {
+                document.getElementById('containerLoader').classList.add("animate__animated", "animate__fadeOutLeft");
+
+                setTimeout(function () {
+                    document.getElementById('containerLoader').classList.add("is-hidden");
+                    document.getElementById('containerResults').classList.remove("is-hidden");
+                    document.getElementById('containerResults').classList.add("animate__animated", "animate__fadeInRight");
+
+                }, 500);
+            }, ((1 + Math.floor(Math.random() * 4)) * 1000));
+        }
+
+        function calculateResults() {
+            const randomFavLanguage = Math.floor(Math.random() * faveLanguageNouns[answers.favoriteLanguage].length);
+            const randomSkillLevel = Math.floor(Math.random() * skillLevelAdjectives[answers.skillLevel].length);
+
+            resultDevName = "<span>" + faveLanguageNouns[answers.favoriteLanguage][randomFavLanguage] + "</span> <span>" + skillLevelAdjectives[answers.skillLevel][randomSkillLevel] + "</span>";
+        }
+    </script>
+</body>
+
+</html>

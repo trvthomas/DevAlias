@@ -1,0 +1,197 @@
+@import url('bulma-modifications.css');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+body,
+html {
+	font-family: "Courier Prime", monospace;
+	background-color: var(--bulma-primary-05);
+	background-image: url("/assets/bg-dark.png");
+	background-repeat: repeat;
+	scroll-behavior: smooth;
+}
+
+input[type=file] {
+	border: 2px dashed var(--bulma-primary);
+	border-radius: 6px;
+	padding: 3rem;
+	width: 100%;
+}
+
+.fas,
+.far,
+.fab,
+.fa-solid,
+.fa-regular,
+.fa-brands {
+	margin: auto 0.25rem;
+}
+
+.smallBox {
+	width: 40%;
+	margin: auto;
+	margin-bottom: 0.5rem;
+}
+
+/* Loading Screen */
+.overlayLoader {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 40;
+	cursor: wait;
+	text-align: center;
+	color: #fff;
+	-webkit-animation: fade 0.3s ease-in-out;
+	animation: fade 0.3s ease-in-out;
+}
+
+.overlayLoader .imgProcessing {
+	width: 60%;
+	margin: auto;
+}
+
+.overlayLoader .loaderBox {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Modal */
+.trvModal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(25, 25, 26, 0.3);
+	z-index: 40;
+}
+
+.trvModal-content {
+	position: relative;
+	color: var(--bulma-on-scheme);
+	background-color: var(--bulma-primary-10);
+	border: 2px solid var(--bulma-primary-10-invert);
+	margin: 5% auto;
+	width: 60%;
+	border-radius: 6px;
+	-webkit-animation: enter-top 0.5s ease-out;
+	animation: enter-top 0.5s ease-out;
+}
+
+.trvModal-content-small {
+	width: 40%;
+}
+
+.trvModal-content .delete:first-child {
+	position: absolute;
+	top: 7px;
+	right: 7px;
+}
+
+.trvModal-header {
+	width: 100%;
+	text-align: center;
+	background-color: var(--bulma-primary-15);
+	border-bottom: 2px solid var(--bulma-primary-15-invert);
+	border-radius: 6px 6px 0 0;
+}
+
+/* Color avatar */
+.categoryColorImage {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 24px;
+	position: relative;
+	border: .23rem solid var(--color2-dark);
+	background-color: var(--bulma-primary-dark);
+	color: var(--bulma-white);
+}
+
+.categoryColorImage span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-weight: bold;
+}
+
+.cardFloatingIconImg {
+	position: absolute;
+	top: -1rem;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+.hero .container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 90vw;
+}
+
+.optionsBox {
+	background-color: var(--bulma-primary-soft);
+	padding-top: 3.5rem;
+}
+
+/* Animations */
+.fade {
+	-webkit-animation: fade 0.5s ease-in-out;
+	animation: fade 0.5s ease-in-out;
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.elementHover {
+	transition: scale .2s;
+}
+
+.elementHover:hover {
+	scale: 1.1;
+}
+
+@media screen and (max-width: 768px) {
+	.smallBox {
+		width: auto;
+	}
+
+	.trvModal-content {
+		width: 95%;
+	}
+
+	.trvModalButtons {
+		flex-direction: column-reverse;
+		display: flex;
+	}
+}
