@@ -151,9 +151,17 @@ input[type=file] {
 
 .centeredResults {
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -40%);
+}
+
+.floatingImage {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .starsContainer {
@@ -209,7 +217,7 @@ input[type=file] {
 }
 
 #resultsDevAlias span:last-child {
-	color: var(--bulma-primary-dark);
+	color: var(--bulma-primary);
 }
 
 /* Animations */

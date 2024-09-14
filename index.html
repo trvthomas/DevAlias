@@ -174,21 +174,31 @@
             <div class="is-hidden" id="containerResults">
                 <div class="columns">
                     <div class="column is-relative" style="border-right: 2px solid var(--bulma-primary)">
+                        <img class="floatingImage animate__animated animate__fadeIn animate__delay-1s"
+                            src="assets/frame.png" alt="">
+
                         <div class="centeredResults">
-                            <h3 class="subtitle is-3" id="resultsUserName"></h3>
-                            <h2 class="title is-1 animate__animated animate__zoomInDown animate__delay-1s"
+                            <h3 class="subtitle is-4 animate__animated animate__fadeInDown animate__delay-2s"
+                                id="resultsUserName"></h3>
+                            <h2 class="title is-1 animate__animated animate__zoomInDown animate__delay-4s"
                                 style="font-family: 'Archivo Black', sans-serif;" id="resultsDevAlias">
                             </h2>
                         </div>
                     </div>
 
                     <div class="column is-one-third">
-                        <h4 class="title mb-1" id="resultsInvitingMessage">Inviting message...</h4>
+                        <div class="animate__animated animate__fadeIn" style="animation-delay: 6s;">
+                            <div class="p-3" style="background-color: rgba(204, 82, 0, 0.4); border-radius: .75rem;">
+                                <h4 class="subtitle mb-1" id="resultsInvitingMessage"></h4>
 
-                        <figure class="image is-1by1 mx-auto" style="width: 60%;">
-                            <img src="assets/discord-qr.png" alt="CSM Computer Science Club Discord QR Code"
-                                style="border-radius: 1rem;">
-                        </figure>
+                                <figure class="image is-1by1 mx-auto" style="width: 60%;">
+                                    <img src="assets/discord-qr.png" alt="CSM Computer Science Club Discord QR Code"
+                                        style="border-radius: 1rem;">
+                                </figure>
+
+                                <a class="button is-primary is-light is-fullwidth mt-2" href="/."><i class="fa-solid fa-arrows-rotate"></i> Start over</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,7 +207,6 @@
     <script type="text/javascript" src="include/names.js"></script>
     <script>
         const answers = { favoriteLanguage: "", skillLevel: "", userName: "" };
-        var resultDevName = "";
 
         function createStars() {
             for (var x = 0; x <= 150; x++) {
@@ -271,14 +280,13 @@
         }
 
         function displayResults() {
-            calculateResults();
-
             if (answers.userName != "") {
                 document.getElementById('resultsUserName').innerHTML = answers.userName + ", the";
             } else {
                 document.getElementById('resultsUserName').innerHTML = "Your DevAlias is:";
             }
-            document.getElementById('resultsDevAlias').innerHTML = resultDevName;
+            document.getElementById('resultsDevAlias').innerHTML = getGeneratedName();
+            document.getElementById('resultsInvitingMessage').innerHTML = getInvitingMessage();
 
             setTimeout(function () {
                 document.getElementById('containerLoader').classList.add("animate__animated", "animate__fadeOutLeft");
@@ -287,16 +295,29 @@
                     document.getElementById('containerLoader').classList.add("is-hidden");
                     document.getElementById('containerResults').classList.remove("is-hidden");
                     document.getElementById('containerResults').classList.add("animate__animated", "animate__fadeInRight");
-
+                    setTimeout(function () {
+                        document.getElementById('resultsDevAlias').classList.remove("animate__zoomInDown", "animate__delay-4s");
+                        document.getElementById('resultsDevAlias').classList.add("animate__pulse", "animate__infinite", "animate__slow");
+                    }, 8000);
                 }, 500);
             }, ((1 + Math.floor(Math.random() * 4)) * 1000));
         }
 
-        function calculateResults() {
+        function getGeneratedName() {
             const randomFavLanguage = Math.floor(Math.random() * faveLanguageNouns[answers.favoriteLanguage].length);
             const randomSkillLevel = Math.floor(Math.random() * skillLevelAdjectives[answers.skillLevel].length);
 
-            resultDevName = "<span>" + skillLevelAdjectives[answers.skillLevel][randomSkillLevel] + "</span> <span>" + faveLanguageNouns[answers.favoriteLanguage][randomFavLanguage] + "</span>";
+            return "<span>" + skillLevelAdjectives[answers.skillLevel][randomSkillLevel] + "</span> <span>" + faveLanguageNouns[answers.favoriteLanguage][randomFavLanguage] + "</span>";
+        }
+
+        function getInvitingMessage() {
+            const randomMessage = Math.floor(Math.random() * invitingMessages[answers.skillLevel].length);
+            const messageRetrieved = invitingMessages[answers.skillLevel][randomMessage];
+            var finalMessage = messageRetrieved.replace(/{{language}}/g, answers.favoriteLanguage);
+            finalMessage = finalMessage.replace(/Discord/g, "<span style=\"color: #5865F2\">Discord</span>");
+            finalMessage = finalMessage.replace(/our club/g, "<span style=\"color: #9cb3c9\">our club</span>");
+
+            return finalMessage;
         }
     </script>
 </body>
