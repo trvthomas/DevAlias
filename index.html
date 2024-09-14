@@ -29,7 +29,7 @@
 </head>
 
 <body onload="createStars()">
-    <section class="hero is-black is-fullheight is-relative">
+    <section class="hero is-black is-fullheight is-relative is-hidden-mobile">
         <div class="heroImage">
             <img src="assets/background.png" alt="">
         </div>
@@ -196,12 +196,21 @@
                                         style="border-radius: 1rem;">
                                 </figure>
 
-                                <a class="button is-primary is-light is-fullwidth mt-2" href="/DevAlias"><i class="fa-solid fa-arrows-rotate"></i> Start over</a>
+                                <a class="button is-primary is-light is-fullwidth mt-2" href="/DevAlias"><i
+                                        class="fa-solid fa-arrows-rotate"></i> Start over</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+    </section>
+
+    <section class="is-hidden-tablet">
+        <div class="smallBox box mt-5 has-text-centered">
+            <i class="fa-fw fas fa-mobile-screen-button fa-5x mb-1"></i>
+            <h1 class="title">Game not optimized for mobile</h1>
+            <p class="subtitle">Open it on a tablet or computer</p>
+        </div>
     </section>
 
     <script type="text/javascript" src="include/names.js"></script>
