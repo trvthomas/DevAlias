@@ -1,4 +1,4 @@
-# DevAlias
+# 🧑‍💻 DevAlias
 A simple HTML, CSS, and JS mini-game that generates a Developer Alias or Coder Name based on some simple questions.
 
 Have fun!
